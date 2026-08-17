@@ -1,128 +1,110 @@
 # Composio AI Product Ops: 100-App Toolkit Research & Verification Engine
 
-> **A production-ready autonomous research pipeline, systemic pattern clustering engine, and executive-grade single-page case study evaluating 100 target applications across 10 software verticals for Composio toolkits and MCP servers.**
+> **A production-ready autonomous research pipeline, live verification engine, and executive dashboard evaluating 100 target applications across 10 software verticals for Composio toolkits and MCP servers.**
 
 🌐 **Live Dashboard**: [https://nagnikhil.github.io/composio-app-toolkit-research/](https://nagnikhil.github.io/composio-app-toolkit-research/)  
 📁 **GitHub Repo**: [https://github.com/NagNikhil/composio-app-toolkit-research](https://github.com/NagNikhil/composio-app-toolkit-research)
 
 ---
 
-## ⚡ 2-Minute Executive Summary
+## ⚡ Executive Summary
 
-Composio turns software applications into agent-callable toolkits and Model Context Protocol (MCP) servers. To scale toolkit creation systematically across hundreds of integrations, we engineered an autonomous research and verification agent pipeline built with **Composio's own SDK and MCP toolsets**.
+Composio turns software applications into agent-callable toolkits and Model Context Protocol (MCP) servers. To evaluate toolkit buildability systematically across 100 integrations, this repository implements a grounded research and verification pipeline where **every statistic is derived directly from live documentation evidence and verified checks**.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                                   MACRO KEY METRICS                                     │
+│                                   PIPELINE ARCHITECTURE                                 │
 ├─────────────────────┬─────────────────────┬─────────────────────┬───────────────────────┤
-│      100 Apps       │      78% Ready      │   86% Self-Serve    │     +23.0% Lift       │
-│  10 Core Verticals  │   Immediate Build   │  Free Dev Accounts  │  Pass 1 (76%) → (99%) │
+│   Pass 1 Research   │   Pass 2 Verify     │   Pass 3 HITL QA    │   Dynamic Insights    │
+│  Live Docs & Search │  URL Re-verification│  Stratified Audit   │  Derived JSON Metrics │
 └─────────────────────┴─────────────────────┴─────────────────────┴───────────────────────┘
 ```
 
 ### 💡 Core Pattern Findings & Insights
 
 1. **The Auth Divide by Vertical**:
-   - **OAuth2 Dominance (48% overall)** rules high-compliance B2B SaaS (*CRM & Sales: 70%*, *Communications: 60%*, *Finance: 50%*), requiring granular token refresh mechanisms.
-   - **Bearer API Keys (42% overall)** dominate developer-first and scraping platforms (*Data/SEO: 70%*, *Dev/Infra: 60%*), offering the fastest path to agent execution.
-   - **Local / CLI Tools (4% overall)** (*Sherlock, Mermaid CLI*) require Subprocess MCP wrappers rather than remote HTTP endpoints.
+   - **OAuth2 Dominance** characterizes high-compliance B2B SaaS (*CRM & Sales*, *Communications*, *Finance*), requiring multi-tenant token refresh handlers.
+   - **Bearer / API Keys** dominate developer-first and scraping platforms (*Data/SEO*, *Dev/Infra*), offering rapid agent execution.
+   - **Local CLI Subprocess Tools** (*Sherlock, Mermaid CLI*) require Subprocess Model Context Protocol (MCP) servers rather than remote HTTP endpoints.
 2. **The Gating Landscape**:
-   - **86% of applications offer self-serve access** via free tiers, 14-day trials, or sponsored developer sandboxes (e.g., Salesforce Dev Orgs, HubSpot Developer accounts, Shopify Partner Stores).
-   - **14% are strictly gated**, concentrated in *Private Capital CRM/Data (DealCloud, PitchBook)*, *Enterprise Commerce (Salesforce Commerce Cloud)*, and *Regulated Utilities (iPayX, Paygent)*.
-3. **Hidden Developer Token Walls (The Secondary Review Gate)**:
-   - Several platforms feature public, well-documented REST APIs but enforce a secondary developer application review before issuing live tokens (*Google Ads Developer Token*, *LinkedIn Marketing Platform*, *Amazon SP-API DPP*).
-4. **Accuracy Verification Progression**:
-   - Automated verification loops lifted accuracy from **76.0% (Pass 1)** to **92.5% (Pass 2)**, and human ground-truth validation achieved **99.0% (Pass 3)**.
+   - **Self-Serve Access** is available for the majority of target platforms via free tiers, trials, or sponsored developer sandboxes (e.g., Salesforce Developer Orgs, HubSpot Developer accounts, Shopify Partner Stores).
+   - **Enterprise Gating** is concentrated in *Private Capital CRM/Data (DealCloud, PitchBook)*, *Enterprise Commerce (Salesforce Commerce Cloud)*, and *Regulated Billing (iPayX, Paygent)*.
+3. **Hidden Developer Review Gates**:
+   - Several platforms maintain public documentation but require secondary developer reviews or partner tokens before issuing live credentials (*Google Ads Developer Token*, *LinkedIn Marketing Platform*, *Amazon SP-API*).
+4. **Data Integrity & Traceability**:
+   - Every metric on the dashboard is computed at build/run time from `apps_100_researched.json`, `verification_sample.json`, and `pattern_insights.json`.
 
 ---
 
-## 🛠️ System Architecture: Composio SDK & MCP Pipeline
+## 🛠️ System Architecture: Multi-Pass Pipeline
 
 ```
   ┌──────────────────────────────────────────────────────────────────────────────────┐
   │                         INPUT: 100 APPLICATION TARGETS                           │
+  │                             (data/raw_apps_input.json)                           │
   └────────────────────────────────────────┬─────────────────────────────────────────┘
                                            │
                                            ▼
   ┌──────────────────────────────────────────────────────────────────────────────────┐
-  │                   PASS 1: AUTONOMOUS COMPOSIO AGENT ENGINE                       │
-  │  • Composio Toolset: FIRECRAWL_SCRAPE, SERPAPI_SEARCH, GITHUB_SEARCH             │
-  │  • Developer Portal & OpenAPI 3.0 / Swagger JSON Spec Harvester                  │
-  │  • 12-Dimension Extraction Schema (Auth, Gating, Surface, Verdict, Blocker)      │
+  │                   PASS 1: GROUNDED RESEARCH AGENT                                │
+  │  • Live Web Search & Scraping against current developer documentation            │
+  │  • Anti-hallucination constraints ("not found"/"unclear" fallback)               │
+  │  • Strict 12-dimension schema & incremental atomic checkpointing                 │
   └────────────────────────────────────────┬─────────────────────────────────────────┘
                                            │
                                            ▼
   ┌──────────────────────────────────────────────────────────────────────────────────┐
-  │                   PASS 2: AUTOMATED VERIFICATION LOOPS                           │
-  │  • HTTP Liveness & Canonical URL Redirect Ping                                   │
-  │  • Enterprise Gating Heuristic Guardrails (detects 401 routes / hidden paywalls) │
-  │  • Local CLI Subprocess MCP Detector (flags non-cloud executables)               │
+  │                   PASS 2: AUTOMATED URL & EVIDENCE VERIFICATION                  │
+  │  • HTTP Liveness & Reachability checks over canonical documentation URLs         │
+  │  • Content cross-validation for claimed auth methods & gating tiers              │
+  │  • Real per-app pass/fail reason logs & computed pass rate percentages           │
   └────────────────────────────────────────┬─────────────────────────────────────────┘
                                            │
                                            ▼
   ┌──────────────────────────────────────────────────────────────────────────────────┐
   │               PASS 3: HUMAN-IN-THE-LOOP (HITL) STRATIFIED AUDIT                  │
-  │  • 20-App Stratified Gold-Standard Cross-Check Sample                            │
-  │  • Edge Case Disambiguation (Crypto signatures, DC routing, User vs Dev tokens)  │
+  │  • Stratified CLI audit console sampling across all 10 categories                │
+  │  • Interactive verification against live docs with timestamped logging           │
+  │  • Accuracy % computed dynamically from verified sample entries                  │
   └────────────────────────────────────────┬─────────────────────────────────────────┘
                                            │
                                            ▼
   ┌──────────────────────────────────────────────────────────────────────────────────┐
-  │                     DELIVERABLES & INTERACTIVE DASHBOARD                         │
-  │  • Single-Page Executive Case Study (index.html) with 2-minute Skimmability      │
-  │  • Full 100-App Researched JSON Dataset (apps_100_researched.json)               │
-  │  • CLI Orchestrator & Test Suite (runner.py, test_suite.py)                      │
+  │                     DYNAMIC DELIVERABLES & DASHBOARD                             │
+  │  • Single-Page Interactive Dashboard (index.html) reading JSON at runtime        │
+  │  • Full 100-App Researched Dataset (data/apps_100_researched.json)               │
+  │  • Derived Pattern Insights Generator (agent/derive_insights.py)                 │
+  │  • CLI Orchestrator & Test Suite (agent/runner.py, agent/test_suite.py)          │
   └──────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🤖 Division of Labor: What the Agent Did vs. Where Human Intervention Was Needed
+## 🚀 Running the Pipeline
 
-### 1. What the Composio SDK Agent Did (Autonomous Execution)
-- **High-Throughput Parallel Scraping**: Crawled 100 documentation portals in seconds using Composio search and scraping toolsets.
-- **Spec Extraction & Normalization**: Mapped endpoints, HTTP verbs, rate limits, and schemas across REST, GraphQL, gRPC, and Webhooks into strict JSON.
-- **MCP Registry Discovery**: Scanned official Composio toolkits and open-source MCP repositories across GitHub and npm.
-- **Automated Sanity Auditing**: Verified doc URL liveness and flagged broken or redirected endpoints.
-
-### 2. Where Human Intervention (HITL) Was Needed (High-Value Edge Cases)
-- **Enterprise Sales Paywalls Disguised Behind Public Docs**: Platforms like *DealCloud*, *PitchBook*, *Salesforce Commerce Cloud*, and *Gladly* publish open Swagger documentation. Automated scrapers misclassified them as "Self-Serve Free". Human QA confirmed that obtaining credentials requires $20k–$50k/year enterprise contracts.
-- **Disambiguating User OAuth vs. Developer Platform Keys**: For *Notion*, *Slack*, and *HubSpot*, human validation ensured distinguishing between internal integration tokens (1-click personal use) and multi-tenant OAuth marketplaces.
-- **Cryptographic Request Signing**: Caught that *Binance* requires millisecond timestamp synchronization and HMAC SHA-256 signatures, rather than standard Bearer headers.
-- **Cloud APIs vs. Local Subprocess CLI Tools**: Identified that *Sherlock* and *Mermaid CLI* lack cloud APIs and should be deployed as isolated **Local Subprocess MCP Servers**.
-
----
-
-## 📈 Multi-Pass Accuracy Progression & Audit Matrix
-
-| Metric | Pass 1: Raw Agent Research | Pass 2: Automated Verification Loop | Pass 3: Human-in-the-Loop Gold Standard |
-| :--- | :---: | :---: | :---: |
-| **Accuracy Score** | **76.0%** | **92.5%** | **99.0%** |
-| **Accuracy Delta** | *Baseline* | **+16.5% Lift** | **+23.0% Total Lift** |
-| **Primary Failure Modes** | Conflating public Swagger with self-serve; missing developer token review gates | Edge case paywalls; non-standard cryptographic HMAC signatures | 100% resolved across all 100 applications |
-
----
-
-## 🎯 2x2 Buildability Prioritization Matrix
-
+### Prerequisites
+```bash
+pip install -r requirements.txt
+cp .env.example .env
 ```
-                          ▲ HIGH ENTERPRISE DEMAND
-                          │
-     [ ENTERPRISE GATED ] │ [ IMMEDIATE QUICK WINS ]
-     14 Applications      │ 54 Applications
-     • SF Commerce Cloud  │ • Stripe, GitHub, Linear
-     • PitchBook, DealCloud│ • Notion, Supabase, Firecrawl
-     • Gladly, Paygent    │ • Slack, HubSpot, Airtable
-     (Strategy: BYO-Keys) │ (Strategy: 1-Click Rollout)
-──────────────────────────┼──────────────────────────► LOW BUILD
-                          │                            EFFORT
-     [ BLOCKED / OUTREACH]│ [ DEVELOPER-FIRST MCP ]
-     1 Application        │ 24 Applications
-     • fanbasis           │ • Reducto, Plain, Twenty
-     (Strategy: Partner   │ • Sherlock, Mermaid CLI
-      Outreach)           │ • Fathom, Grain, Apify
-                          │ (Strategy: Spec Generator)
-                          ▼
+
+### CLI Commands
+
+```bash
+# 1. Run Grounded Research across target apps (Pass 1)
+python agent/runner.py --research
+
+# 2. Run Automated Live Verification Loop (Pass 2)
+python agent/runner.py --verify --limit 20
+
+# 3. Launch Interactive Human-in-the-Loop QA Audit (Pass 3)
+python agent/runner.py --audit
+
+# 4. Re-derive all aggregate metrics and pattern insights
+python agent/runner.py --insights
+
+# 5. Run Automated Test Suite
+python agent/test_suite.py
 ```
 
 ---
@@ -130,85 +112,21 @@ Composio turns software applications into agent-callable toolkits and Model Cont
 ## 📂 Project Structure
 
 ```
-composio-app-toolkit-research/
-├── index.html                    # Single-Page Executive Case Study & Interactive Data Explorer
-├── README.md                      # Comprehensive project documentation & findings report
-├── INPUTS_REQUIRED.md             # API key setup and environment configuration guide
-├── requirements.txt              # Python dependencies
-├── .env                          # Local credentials configuration
-├── css/
-│   └── styles.css                # Premium responsive CSS design system (Dark/Light themes)
-├── js/
-│   ├── app.js                    # UI controller, instant search, multi-facet filtering, detail drawer
-│   └── charts.js                 # Dynamic SVG/Canvas chart rendering engine
+├── agent/
+│   ├── research_agent.py      # Grounded LLM & web search crawler with checkpointing
+│   ├── verify_agent.py        # Pass 2 live URL & auth evidence re-verification
+│   ├── human_qa_audit.py      # Pass 3 interactive stratified HITL audit tool
+│   ├── derive_insights.py     # Real-time data aggregator & pattern insight engine
+│   ├── runner.py              # Unified CLI orchestrator
+│   └── test_suite.py          # Unit tests enforcing schema & metric derivation
 ├── data/
-│   ├── raw_apps_input.json       # Clean input list for all 100 apps across 10 categories
-│   ├── apps_100_researched.json  # 100% Complete 12-dimension researched dataset
-│   ├── verification_sample.json  # 20-app stratified cross-validation sample (Hits & Misses)
-│   └── pattern_insights.json     # Aggregated cluster metrics, blocker rankings, and matrix data
-└── agent/
-    ├── composio_integration.py   # Composio SDK & MCP toolset interface module
-    ├── research_agent.py         # Autonomous discovery & schema extraction pipeline
-    ├── verify_agent.py           # Pass 2 verification loop & rule engine
-    ├── human_qa_audit.py         # Pass 3 HITL benchmark calculator & audit logger
-    ├── runner.py                 # CLI orchestration tool
-    └── test_suite.py             # Automated unit tests and schema validator
+│   ├── raw_apps_input.json        # 100 input app names, categories, and hint URLs
+│   ├── apps_100_researched.json   # 100-app grounded research records
+│   ├── verification_sample.json   # Logged human QA audit checks with timestamps
+│   └── pattern_insights.json      # Dynamically derived aggregate metrics
+├── js/
+│   ├── app.js                 # Dashboard controller binding UI to JSON at runtime
+│   └── charts.js              # Lightweight dynamic chart visualizer
+├── index.html                 # Dark-mode executive dashboard
+└── requirements.txt           # Python dependencies
 ```
-
----
-
-## 🚀 How to Run Locally
-
-### 1. Launch the Interactive Web Application
-You can view the single-page report immediately with zero setup using any static web server:
-
-```bash
-# Start a local HTTP server
-python -m http.server 8000
-```
-Open **`http://localhost:8000`** in your browser.
-
-### 2. Run the CLI Verification Pipeline & Test Suite
-
-```bash
-# Run automated schema and dataset unit tests (100% passing)
-python agent/test_suite.py
-
-# Run Pass 2 automated verification loop
-python agent/runner.py --verify
-
-# Run Pass 3 Human-in-the-Loop accuracy audit
-python agent/runner.py --audit
-
-# Filter by category or search a specific application
-python agent/runner.py --category "CRM and Sales"
-python agent/runner.py --app "Stripe"
-```
-
----
-
-## 🧪 Verification & Test Results
-
-```
-test_10_categories_coverage (__main__.TestComposioResearchDataset) ... ok
-test_all_schema_fields_present_and_valid (__main__.TestComposioResearchDataset) ... ok
-test_ids_sequential_1_to_100 (__main__.TestComposioResearchDataset) ... ok
-test_pattern_insights_consistency (__main__.TestComposioResearchDataset) ... ok
-test_total_app_count (__main__.TestComposioResearchDataset) ... ok
-test_verification_sample_integrity (__main__.TestComposioResearchDataset) ... ok
-
-----------------------------------------------------------------------
-Ran 6 tests in 0.012s
-
-OK (100% Valid Complete Dataset)
-```
-
----
-
-## 🏁 Submission Deliverables Checklist
-- [x] **100 Apps Researched** across 10 categories with all required schema dimensions.
-- [x] **Macroeconomic Patterns Identified**: Auth breakdown, Gating analysis, Ranked Blockers, 2x2 Buildability Matrix.
-- [x] **Composio SDK & MCP Pipeline**: Built in the spirit of the role with clear division of labor (Agent vs Human).
-- [x] **Trust & Verification Audit**: Multi-pass accuracy progression (+23% lift) with transparent hits and misses.
-- [x] **Self-Explanatory Single-Page Case Study (`index.html`)**: Understandable in < 2 minutes with interactive filtering, slide-over drawer, and data export.
-- [x] **Reproducible Source Code & README**: Complete CLI scripts and test suites.

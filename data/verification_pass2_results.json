@@ -1,0 +1,234 @@
+{
+  "metrics": {
+    "total_candidates": 100,
+    "sample_size": 20,
+    "passed_count": 17,
+    "failed_count": 3,
+    "pass_rate_percentage": 85.0,
+    "failure_breakdown": {
+      "AUTH_MISMATCH": 3
+    }
+  },
+  "results": [
+    {
+      "app_id": 1,
+      "name": "Salesforce",
+      "evidence_url": "https://developer.salesforce.com/docs/platform/connect-rest-api/guide/intro_using_oauth.html",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['OAuth2'] auth and self-serve access.",
+      "evidence_snippet": "OAuth and Connect REST API | Connect REST API Developer Guide | Connect REST API Developer Guide | Salesforce Developers OAuth and Connect REST API Connect REST API uses OAuth to securely identify your application before connecting to Salesforce. To ",
+      "timestamp": "2026-08-17T16:35:07Z"
+    },
+    {
+      "app_id": 2,
+      "name": "HubSpot",
+      "evidence_url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/overview",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['OAuth2', 'API Key'] auth and self-serve access.",
+      "evidence_snippet": "Authentication overview - HubSpot docs Documentation Index Fetch the complete documentation index at: /docs/llms.txt Use this file to discover all available pages before exploring further. Skip to main content HubSpot docs home page Search... ⌘ K Ask",
+      "timestamp": "2026-08-17T16:35:09Z"
+    },
+    {
+      "app_id": 11,
+      "name": "Zendesk",
+      "evidence_url": "https://developer.zendesk.com/api-reference/",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['OAuth2', 'API Token (Basic Auth)'] auth and self-serve access.",
+      "evidence_snippet": "API Reference Home | Zendesk Developer Docs zendev_horizontal zendev_horizontal Documentation API Reference Search / API Reference API Reference Home Introduction Betas and EAPs Changelog Capabilities Ticketing Help Center AI Agents Conversations (Me",
+      "timestamp": "2026-08-17T16:35:10Z"
+    },
+    {
+      "app_id": 12,
+      "name": "Intercom",
+      "evidence_url": "https://developers.intercom.com/",
+      "status_code": 200,
+      "passed": false,
+      "failure_type": "AUTH_MISMATCH",
+      "reason": "Claimed OAuth2, but page text lacks OAuth / Token / Authorization references.",
+      "evidence_snippet": "Intercom Developers | Intercom and Fin Developer Platform Skip to content Installation Docs API Reference Developer Hub App Store Search CMD+K Intercom for Developers Integrate with Intercom by building apps on the complete AI customer service platfo",
+      "timestamp": "2026-08-17T16:35:12Z"
+    },
+    {
+      "app_id": 21,
+      "name": "Slack",
+      "evidence_url": "https://api.slack.com/methods",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['OAuth2', 'Bot User Tokens (`xoxb-`)', 'User Tokens (`xoxp-`)'] auth and self-serve access.",
+      "evidence_snippet": "Methods | Slack Developer Docs reference Skip to main content Guides Reference Samples Tools Changelog Dev Program MANAGE APPS Reference App manifest Block Kit Events Interaction payloads Methods Overview admin api apps assistant auth blocks bookmark",
+      "timestamp": "2026-08-17T16:35:15Z"
+    },
+    {
+      "app_id": 22,
+      "name": "Twilio",
+      "evidence_url": "https://www.twilio.com/docs/usage/api",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['HTTP Basic Auth (Account SID + Auth Token)', 'API Keys'] auth and self-serve access.",
+      "evidence_snippet": "Twilio API overview | Twilio Skip to content Skip to navigation Skip to topbar Go to the Twilio Docs home page Twilio Docs General Usage Get started Get started with your Twilio trial account Welcome to the new Twilio console A Beginner&#x27;s Guide ",
+      "timestamp": "2026-08-17T16:35:17Z"
+    },
+    {
+      "app_id": 31,
+      "name": "Google Ads",
+      "evidence_url": "https://developers.google.com/google-ads/api/docs/first-call/overview",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['OAuth2', 'Developer Token (`developer-token`)'] auth and gated access.",
+      "evidence_snippet": "Introduction &nbsp;|&nbsp; Google Ads API &nbsp;|&nbsp; Google for Developers Skip to main content Google Ads API / English Deutsch Español Español – América Latina Français Indonesia Italiano Polski Português – Brasil Tiếng Việt Türkçe Русский עבר",
+      "timestamp": "2026-08-17T16:35:19Z"
+    },
+    {
+      "app_id": 32,
+      "name": "Meta Ads",
+      "evidence_url": "https://developers.facebook.com/docs/marketing-apis/overview",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['Meta User Access Token', 'System User Token (OAuth2)'] auth and self-serve access.",
+      "evidence_snippet": "Overview Build with us Docs Blog Resources Developer centers Login Ads and Commerce Ads and Commerce Overview Marketing API Marketing API Overview About Marketing API How it works Versioning Rate Limiting Data Processing Options Get Started with Mark",
+      "timestamp": "2026-08-17T16:35:26Z"
+    },
+    {
+      "app_id": 41,
+      "name": "Shopify",
+      "evidence_url": "https://shopify.dev/docs/api/admin-rest",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['Custom App Admin API Access Token (`shpat_...`)', 'OAuth2'] auth and self-serve access.",
+      "evidence_snippet": "REST Admin API reference Skip to main content Apps Storefronts Agents References Changelog Ask assistant / Help • Log in Collapse sidebar REST Admin API Choose a version: unstable 2026-10 release candidate 2026-07 latest 2026-04 2026-01 2025-10 2026-",
+      "timestamp": "2026-08-17T16:35:27Z"
+    },
+    {
+      "app_id": 42,
+      "name": "WooCommerce",
+      "evidence_url": "https://woocommerce.com/document/woocommerce-rest-api/",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['Consumer Key + Consumer Secret (Basic Auth / HTTPS)'] auth and self-serve access.",
+      "evidence_snippet": "WooCommerce REST API Documentation - WooCommerce Skip to navigation Skip to content Develop on Woo Hire an expert Get support Sell Extensions Resources Enterprise ecommerce WooCommerce WooCommerce Getting started Migrating to WooCommerce Products Exp",
+      "timestamp": "2026-08-17T16:35:28Z"
+    },
+    {
+      "app_id": 51,
+      "name": "DataForSEO",
+      "evidence_url": "https://docs.dataforseo.com/v3/",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['HTTP Basic Auth (Login + Password/API Key)'] auth and self-serve access.",
+      "evidence_snippet": "DataForSEO API v.3 Search ⌘ K Ask AI Pricing Sign In Sign Up Menu Example Introduction Authentication SERP API Overview Screenshot AI Summary Google Overview Locations Languages Organic Overview Task POST Tasks Ready Task GET Advanced Regular HTML Li",
+      "timestamp": "2026-08-17T16:35:31Z"
+    },
+    {
+      "app_id": 52,
+      "name": "SE Ranking",
+      "evidence_url": "https://seranking.com/api.html",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['API Token (`Authorization: Token <token>`)'] auth and self-serve access.",
+      "evidence_snippet": "SEO API by SE Ranking: SEO &amp; AEO Data at Scale Start doing more with your AI Visibility Data → SE Ranking Grow your visibility with AI SEO SE Visible Analyze AI visibility strategically Planable Manage your socials as a team API Solutions By busi",
+      "timestamp": "2026-08-17T16:35:32Z"
+    },
+    {
+      "app_id": 61,
+      "name": "GitHub",
+      "evidence_url": "https://docs.github.com/en/rest",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['Personal Access Token (`ghp_...`)', 'OAuth2', 'GitHub App (JWT)'] auth and self-serve access.",
+      "evidence_snippet": "GitHub REST API documentation - GitHub Docs Skip to main content GitHub Docs Version: Free, Pro, &amp; Team Search or ask Copilot Search or ask Copilot Select language: current language is English Search or ask Copilot Search or ask Copilot Open menu",
+      "timestamp": "2026-08-17T16:35:34Z"
+    },
+    {
+      "app_id": 62,
+      "name": "Vercel",
+      "evidence_url": "https://vercel.com/docs/rest-api",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['Bearer API Token (`Bearer <token>`)', 'OAuth2'] auth and self-serve access.",
+      "evidence_snippet": "--- title: Rest API product: vercel url: /docs/rest-api canonical_url: \"https://vercel.com/docs/rest-api\" last_updated: 2026-08-17 type: conceptual prerequisites: [] related: - /docs/rest-api/access-groups/reads-an-access-group.md - /docs/rest-api/ac",
+      "timestamp": "2026-08-17T16:35:35Z"
+    },
+    {
+      "app_id": 71,
+      "name": "Notion",
+      "evidence_url": "https://developers.notion.com/reference/intro",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['Internal Integration Token (`Bearer secret_...`)', 'OAuth2'] auth and self-serve access.",
+      "evidence_snippet": "Introduction - Notion Docs Documentation Index Fetch the complete documentation index at: /llms.txt Use this file to discover all available pages before exploring further. Skip to main content Notion Docs home page Search... ⌘ K Ask Assistant Log in ",
+      "timestamp": "2026-08-17T16:35:36Z"
+    },
+    {
+      "app_id": 72,
+      "name": "Airtable",
+      "evidence_url": "https://airtable.com/developers/web/api/introduction",
+      "status_code": 200,
+      "passed": false,
+      "failure_type": "AUTH_MISMATCH",
+      "reason": "Claimed OAuth2, but page text lacks OAuth / Token / Authorization references.",
+      "evidence_snippet": "Airtable Web API Your browser version is not supported. Try our desktop apps ! Alternatively, use the latest version of Chrome , Firefox , Safari, or Edge instead. View this page as Markdown",
+      "timestamp": "2026-08-17T16:35:38Z"
+    },
+    {
+      "app_id": 81,
+      "name": "Stripe",
+      "evidence_url": "https://stripe.com/docs/api",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['Bearer Secret Key (`sk_test_...`)', 'Restricted API Keys', 'OAuth2 (Connect)'] auth and self-serve access.",
+      "evidence_snippet": "Stripe API Reference Find anything / Ask AI Introduction Authentication Errors Expanding Responses Idempotent requests Include-dependent response values (API v2) Metadata Pagination Request IDs Connected Accounts Versioning Enums Core Resources Accou",
+      "timestamp": "2026-08-17T16:35:41Z"
+    },
+    {
+      "app_id": 82,
+      "name": "Plaid",
+      "evidence_url": "https://plaid.com/docs/api/",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['Client ID + Secret Headers (`PLAID-CLIENT-ID` / `PLAID-SECRET`)', 'Link Tokens'] auth and self-serve access.",
+      "evidence_snippet": "API - Overview | Plaid Docs Docs ALL DOCS API Overview # API endpoints and webhooks # API access # API protocols and headers # API host # API status and incidents # Storing API data # API field formats # OpenAPI definition file # Postman collection #",
+      "timestamp": "2026-08-17T16:35:43Z"
+    },
+    {
+      "app_id": 91,
+      "name": "NotebookLM",
+      "evidence_url": "https://cloud.google.com/vertex-ai/docs",
+      "status_code": 200,
+      "passed": true,
+      "failure_type": null,
+      "reason": "Verified: Page reachable (HTTP 200), confirmed ['Google Cloud OAuth2', 'Service Account Key (via Vertex AI)'] auth and gated access.",
+      "evidence_snippet": "Gemini Enterprise Agent Platform &nbsp;|&nbsp; Google Cloud Documentation Skip to main content Technology areas close AI and ML Application development Application hosting Compute Data analytics and pipelines Databases Distributed, hybrid, and multic",
+      "timestamp": "2026-08-17T16:35:47Z"
+    },
+    {
+      "app_id": 92,
+      "name": "Otter AI",
+      "evidence_url": "https://help.otter.ai/",
+      "status_code": 200,
+      "passed": false,
+      "failure_type": "AUTH_MISMATCH",
+      "reason": "Claimed OAuth2, but page text lacks OAuth / Token / Authorization references.",
+      "evidence_snippet": "Help Center Skip to main content | Help Center Submit a request Submit a request Help Center Hi there! How can we help? Search Quick topics: auto-join , notetaker meeting , calendar Categories Getting started New to Otter? Here are the basics to get ",
+      "timestamp": "2026-08-17T16:35:49Z"
+    }
+  ]
+}
