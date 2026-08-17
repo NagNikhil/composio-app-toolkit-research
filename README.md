@@ -2,6 +2,9 @@
 
 > **A production-ready autonomous research pipeline, systemic pattern clustering engine, and executive-grade single-page case study evaluating 100 target applications across 10 software verticals for Composio toolkits and MCP servers.**
 
+🌐 **Live Dashboard**: [https://nagnikhil.github.io/composio-app-toolkit-research/](https://nagnikhil.github.io/composio-app-toolkit-research/)  
+📁 **GitHub Repo**: [https://github.com/NagNikhil/composio-app-toolkit-research](https://github.com/NagNikhil/composio-app-toolkit-research)
+
 ---
 
 ## ⚡ 2-Minute Executive Summary
