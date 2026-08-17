@@ -9,7 +9,7 @@
 
 ## ⚡ Executive Summary
 
-Composio turns software applications into agent-callable toolkits and Model Context Protocol (MCP) servers. To evaluate toolkit buildability systematically across 100 integrations, this repository implements a grounded research and verification pipeline where **every statistic is derived directly from live documentation evidence and verified checks**.
+Composio turns software applications into agent-callable toolkits and Model Context Protocol (MCP) servers. To evaluate toolkit buildability systematically across 100 integrations, this repository implements a grounded research and verification pipeline **built natively on the `composio-openai` Python SDK**. Every statistic is derived directly from live documentation evidence gathered via **Composio's MCP web tools** and verified checks.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
@@ -47,7 +47,8 @@ Composio turns software applications into agent-callable toolkits and Model Cont
                                            ▼
   ┌──────────────────────────────────────────────────────────────────────────────────┐
   │                   PASS 1: GROUNDED RESEARCH AGENT                                │
-  │  • Live Web Search & Scraping against current developer documentation            │
+  │  • Live Web Search & Scraping via Composio SDK tool-calling (Exa/Firecrawl)      │
+  │    against current developer documentation                                        │
   │  • Anti-hallucination constraints ("not found"/"unclear" fallback)               │
   │  • Strict 12-dimension schema & incremental atomic checkpointing                 │
   └────────────────────────────────────────┬─────────────────────────────────────────┘

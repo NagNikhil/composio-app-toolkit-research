@@ -1,11 +1,12 @@
 """
 Autonomous Research Agent Pipeline (Grounded Search & Extraction)
 ================================================================
-Conducts real, grounded per-app research against current developer documentation using:
-1. Anthropic API with web_search tool (if ANTHROPIC_API_KEY set)
-2. OpenAI API with web search tools (if OPENAI_API_KEY set)
-3. Firecrawl Live Web Search & Scraping (if FIRECRAWL_API_KEY set)
-4. Direct HTTP / BeautifulSoup documentation crawler & spec parser
+Built natively on the composio-openai Python SDK. Conducts real, grounded per-app
+research against current developer documentation using Composio MCP web tools:
+
+1. Composio SDK (composio-openai) with App.EXA / App.FIRECRAWL tool-calling
+2. Firecrawl Live Web Search & Scraping (direct if FIRECRAWL_API_KEY set)
+3. Direct HTTP / BeautifulSoup documentation crawler & spec parser (fallback)
 
 Enforces strict JSON schema per app, anti-hallucination constraints ("not found"/"unclear"),
 accurate gating analysis (catching Enterprise Sales Walls and Secondary Token Gates),
@@ -26,6 +27,17 @@ from dotenv import load_dotenv
 
 # Ensure dotenv is loaded
 load_dotenv()
+
+# ---------------------------------------------------------------------------
+# Composio SDK — primary tool provider for Exa & Firecrawl MCP tool-calling
+# ---------------------------------------------------------------------------
+try:
+    from composio_openai import ComposioToolSet, App  # type: ignore
+    _COMPOSIO_AVAILABLE = True
+except ImportError:
+    _COMPOSIO_AVAILABLE = False
+    App = None
+    ComposioToolSet = None
 
 logger = logging.getLogger("ResearchAgent")
 
@@ -66,13 +78,32 @@ class ResearchAgent:
         self.data_dir = data_dir or os.path.join(os.path.dirname(__file__), "..", "data")
         self.output_file = os.path.join(self.data_dir, "apps_100_researched.json")
         self.raw_input_file = os.path.join(self.data_dir, "raw_apps_input.json")
-        
-        # Keys
+
+        # API Keys
         self.anthropic_key = os.getenv("ANTHROPIC_API_KEY")
         self.openai_key = os.getenv("OPENAI_API_KEY")
         self.gemini_key = os.getenv("GEMINI_API_KEY")
         self.firecrawl_key = os.getenv("FIRECRAWL_API_KEY")
         self.composio_key = os.getenv("COMPOSIO_API_KEY")
+
+        # Composio SDK — initialize toolset for Exa & Firecrawl MCP tool-calling
+        self.toolset: Optional[Any] = None
+        self.composio_tools: Optional[List[Any]] = None
+        if _COMPOSIO_AVAILABLE and self.composio_key:
+            try:
+                self.toolset = ComposioToolSet(api_key=self.composio_key)
+                # Register Exa (web search) and Firecrawl (scraping) as MCP tools
+                self.composio_tools = self.toolset.get_tools(
+                    apps=[App.EXA, App.FIRECRAWL]
+                )
+                logger.info(
+                    f"✅ Composio SDK initialized — "
+                    f"{len(self.composio_tools)} tools registered (Exa + Firecrawl)."
+                )
+            except Exception as e:
+                logger.warning(f"Composio SDK init notice (falling back to direct HTTP): {e}")
+                self.toolset = None
+                self.composio_tools = None
 
     def load_raw_apps(self) -> List[Dict[str, Any]]:
         with open(self.raw_input_file, "r", encoding="utf-8") as f:
