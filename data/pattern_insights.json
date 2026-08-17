@@ -4,26 +4,26 @@
   "coverage_percentage": 100.0,
   "coverage_status": "100/100 APIS RESEARCHED",
   "metrics": {
-    "ready_now_count": 98,
-    "ready_now_percentage": 98.0,
-    "medium_friction_count": 0,
-    "medium_friction_percentage": 0.0,
-    "high_friction_count": 2,
-    "high_friction_percentage": 2.0,
-    "not_feasible_count": 0,
-    "not_feasible_percentage": 0.0,
-    "self_serve_count": 98,
-    "self_serve_percentage": 98.0,
-    "gated_count": 2,
-    "gated_percentage": 2.0,
-    "oauth2_dominant_count": 44,
-    "oauth2_dominant_percentage": 44.0,
-    "api_key_dominant_count": 49,
-    "api_key_dominant_percentage": 49.0,
-    "basic_auth_count": 1,
-    "basic_auth_percentage": 1.0,
-    "cli_local_count": 6,
-    "cli_local_percentage": 6.0,
+    "ready_now_count": 84,
+    "ready_now_percentage": 84.0,
+    "medium_friction_count": 5,
+    "medium_friction_percentage": 5.0,
+    "high_friction_count": 10,
+    "high_friction_percentage": 10.0,
+    "not_feasible_count": 1,
+    "not_feasible_percentage": 1.0,
+    "self_serve_count": 89,
+    "self_serve_percentage": 89.0,
+    "gated_count": 11,
+    "gated_percentage": 11.0,
+    "oauth2_dominant_count": 41,
+    "oauth2_dominant_percentage": 41.0,
+    "api_key_dominant_count": 57,
+    "api_key_dominant_percentage": 57.0,
+    "basic_auth_count": 0,
+    "basic_auth_percentage": 0.0,
+    "cli_local_count": 2,
+    "cli_local_percentage": 2.0,
     "existing_mcp_or_composio_count": 25
   },
   "verification_progression": {
@@ -48,26 +48,26 @@
     },
     {
       "category": "Support and Helpdesk",
-      "OAuth2": 1,
-      "API Key": 6,
-      "Basic": 2,
-      "CLI": 1,
+      "OAuth2": 0,
+      "API Key": 10,
+      "Basic": 0,
+      "CLI": 0,
       "total": 10,
       "status": "completed"
     },
     {
       "category": "Communications and Messaging",
-      "OAuth2": 1,
-      "API Key": 7,
+      "OAuth2": 4,
+      "API Key": 6,
       "Basic": 0,
-      "CLI": 2,
+      "CLI": 0,
       "total": 10,
       "status": "completed"
     },
     {
       "category": "Marketing, Ads, Email and Social",
-      "OAuth2": 7,
-      "API Key": 3,
+      "OAuth2": 10,
+      "API Key": 0,
       "Basic": 0,
       "CLI": 0,
       "total": 10,
@@ -75,8 +75,8 @@
     },
     {
       "category": "Ecommerce",
-      "OAuth2": 5,
-      "API Key": 5,
+      "OAuth2": 1,
+      "API Key": 9,
       "Basic": 0,
       "CLI": 0,
       "total": 10,
@@ -85,14 +85,23 @@
     {
       "category": "Data, SEO and Scraping",
       "OAuth2": 1,
-      "API Key": 8,
+      "API Key": 7,
       "Basic": 1,
-      "CLI": 0,
+      "CLI": 1,
       "total": 10,
       "status": "completed"
     },
     {
       "category": "Developer, Infra and Data platforms",
+      "OAuth2": 6,
+      "API Key": 4,
+      "Basic": 0,
+      "CLI": 0,
+      "total": 10,
+      "status": "completed"
+    },
+    {
+      "category": "Productivity and Project Management",
       "OAuth2": 6,
       "API Key": 3,
       "Basic": 1,
@@ -101,27 +110,18 @@
       "status": "completed"
     },
     {
-      "category": "Productivity and Project Management",
-      "OAuth2": 6,
-      "API Key": 2,
-      "Basic": 1,
-      "CLI": 1,
-      "total": 10,
-      "status": "completed"
-    },
-    {
       "category": "Finance and Fintech",
-      "OAuth2": 5,
-      "API Key": 4,
-      "Basic": 1,
+      "OAuth2": 3,
+      "API Key": 7,
+      "Basic": 0,
       "CLI": 0,
       "total": 10,
       "status": "completed"
     },
     {
       "category": "AI, Research and Media-native",
-      "OAuth2": 3,
-      "API Key": 5,
+      "OAuth2": 1,
+      "API Key": 7,
       "Basic": 0,
       "CLI": 2,
       "total": 10,
@@ -131,8 +131,8 @@
   "gating_by_category": [
     {
       "category": "CRM and Sales",
-      "self_serve": 10,
-      "gated": 0,
+      "self_serve": 9,
+      "gated": 1,
       "total": 10,
       "status": "completed"
     },
@@ -159,15 +159,15 @@
     },
     {
       "category": "Ecommerce",
-      "self_serve": 10,
-      "gated": 0,
+      "self_serve": 8,
+      "gated": 2,
       "total": 10,
       "status": "completed"
     },
     {
       "category": "Data, SEO and Scraping",
-      "self_serve": 10,
-      "gated": 0,
+      "self_serve": 9,
+      "gated": 1,
       "total": 10,
       "status": "completed"
     },
@@ -187,22 +187,22 @@
     },
     {
       "category": "Finance and Fintech",
-      "self_serve": 10,
-      "gated": 0,
+      "self_serve": 7,
+      "gated": 3,
       "total": 10,
       "status": "completed"
     },
     {
       "category": "AI, Research and Media-native",
-      "self_serve": 9,
-      "gated": 1,
+      "self_serve": 7,
+      "gated": 3,
       "total": 10,
       "status": "completed"
     }
   ],
   "strategic_rollout": {
     "sprint_1_quick_wins": {
-      "count": 98,
+      "count": 84,
       "apps": [
         "Salesforce",
         "HubSpot",
@@ -213,50 +213,75 @@
         "Zoho CRM",
         "Close",
         "Copper",
-        "DealCloud"
+        "Zendesk"
       ]
     },
     "sprint_2_fast_followers": {
-      "count": 7,
+      "count": 9,
       "apps": [
         "Twenty",
-        "Help Scout",
-        "Slack",
-        "Zoho Cliq",
-        "ClickUp",
+        "WhatsApp Business",
+        "Google Ads",
+        "Meta Ads",
+        "LinkedIn Ads",
+        "Amazon Selling Partner",
+        "Sherlock",
         "higgsfield",
         "Mermaid CLI"
       ]
     },
     "sprint_3_enterprise_gateways": {
-      "count": 2,
+      "count": 11,
       "apps": [
-        "Freshdesk",
-        "Consensus"
+        "DealCloud",
+        "Gladly",
+        "Salesforce Commerce Cloud",
+        "fanbasis",
+        "Waterfall.io",
+        "Paygent Connect",
+        "iPayX",
+        "PitchBook",
+        "NotebookLM",
+        "Otter AI"
       ]
     }
   },
   "top_blockers_taxonomy": [
     {
       "rank": 1,
-      "blocker": "Local CLI / Desktop Subprocess Requirement",
-      "count": 6,
+      "blocker": "Enterprise Sales Wall / Custom Provisioning",
+      "count": 11,
       "examples": [
-        "Help Scout",
-        "Slack",
-        "Zoho Cliq",
-        "ClickUp",
-        "higgsfield"
+        "DealCloud",
+        "Gladly",
+        "Salesforce Commerce Cloud",
+        "fanbasis",
+        "Waterfall.io"
       ],
       "composio_remedy": "Provide BYO-Credentials enterprise connector / Subprocess bridge."
     },
     {
       "rank": 2,
-      "blocker": "Enterprise Sales Wall / Custom Provisioning",
-      "count": 2,
+      "blocker": "Partner Developer Review / Token Gate",
+      "count": 5,
       "examples": [
-        "Freshdesk",
-        "Consensus"
+        "WhatsApp Business",
+        "Google Ads",
+        "Meta Ads",
+        "LinkedIn Ads",
+        "Amazon Selling Partner"
+      ],
+      "composio_remedy": "Provide BYO-Credentials enterprise connector / Subprocess bridge."
+    },
+    {
+      "rank": 3,
+      "blocker": "Local CLI / Desktop Subprocess Requirement",
+      "count": 4,
+      "examples": [
+        "Twenty",
+        "Sherlock",
+        "higgsfield",
+        "Mermaid CLI"
       ],
       "composio_remedy": "Provide BYO-Credentials enterprise connector / Subprocess bridge."
     }
