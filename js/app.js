@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (filtered.length === 0) {
       tableBody.innerHTML = `
         <tr>
-          <td colspan="7" class="py-12 text-center text-zinc-500 font-mono">
+          <td colspan="8" class="py-12 text-center text-zinc-500 font-mono">
             NO_RECORDS_MATCH_QUERY
           </td>
         </tr>
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     tableBody.innerHTML = filtered.map(app => {
-      // Auth Monospace Tags
+      // 1. Auth Monospace Tags
       const authBadges = app.auth_types.map(a => {
         let borderCol = 'border-zinc-800';
         let textCol = 'text-zinc-300';
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return `<span class="font-mono text-[10px] px-1.5 py-0.5 rounded border ${borderCol}">${a}</span>`;
       }).join(' ');
 
-      // Surface Monospace Badge
+      // 2. Surface Monospace Badge
       let surfaceText = "REST";
       const sLower = (app.api_surface || "").toLowerCase();
       if (sLower.includes("graphql") && sLower.includes("rest")) {
@@ -223,18 +223,18 @@ document.addEventListener('DOMContentLoaded', async () => {
       } else if (sLower.includes("graphql")) {
         surfaceText = "GraphQL";
       } else if (sLower.includes("cli") || sLower.includes("subprocess")) {
-        surfaceText = "CLI / Subprocess";
+        surfaceText = "CLI";
       } else if (sLower.includes("no public") || sLower.includes("internal")) {
         surfaceText = "No Public API";
       } else if (sLower.includes("grpc")) {
         surfaceText = "gRPC + REST";
-      } else if (sLower.includes("rest")) {
+      } else {
         surfaceText = "REST";
       }
 
-      const surfaceBadge = `<span class="font-mono text-[10px] px-1.5 py-0.5 rounded border border-zinc-800 bg-zinc-900/60 text-zinc-300">${surfaceText}</span>`;
+      const surfaceBadge = `<span class="font-mono text-[10px] px-1.5 py-0.5 rounded border border-zinc-800 bg-zinc-900 text-zinc-300">${surfaceText}</span>`;
 
-      // Access Tier Badge
+      // 3. Access Tier Badge
       let accessBadge = `<span class="font-mono text-[11px] text-zinc-400">${app.access_tier}</span>`;
       if (app.is_self_serve) {
         accessBadge = `<span class="font-mono text-[11px] text-emerald-400">● Free/Trial</span>`;
@@ -244,11 +244,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         accessBadge = `<span class="font-mono text-[11px] text-rose-500">✕ No API</span>`;
       }
 
-      // Buildability Verdict Tag with Main Blocker Subtitle
+      // 4. Buildability Verdict Tag with Main Blocker Subtitle
       let verdictTag = `<span class="font-mono text-[11px] text-emerald-400">● Ready</span>`;
       if (app.buildability_verdict.includes('Medium')) {
         let blockerSubtitle = app.main_blocker || "Requires Partner Token";
-        if (blockerSubtitle.length > 55) blockerSubtitle = blockerSubtitle.substring(0, 52) + "...";
+        if (blockerSubtitle.startsWith("None.")) blockerSubtitle = "Requires Partner App Registration";
+        if (blockerSubtitle.length > 50) blockerSubtitle = blockerSubtitle.substring(0, 48) + "...";
         verdictTag = `
           <div>
             <span class="font-mono text-[11px] text-amber-400">▲ Medium</span>
@@ -256,9 +257,9 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
         `;
       } else if (app.buildability_verdict.includes('High Friction') || app.buildability_verdict.includes('Gated')) {
-        let blockerSubtitle = app.main_blocker || "Enterprise Contract Required";
-        if (blockerSubtitle.startsWith("None.")) blockerSubtitle = "Enterprise Sales Contract Required";
-        if (blockerSubtitle.length > 55) blockerSubtitle = blockerSubtitle.substring(0, 52) + "...";
+        let blockerSubtitle = app.main_blocker || "Requires Partner Contract";
+        if (blockerSubtitle.startsWith("None.")) blockerSubtitle = "Requires Partner Contract";
+        if (blockerSubtitle.length > 50) blockerSubtitle = blockerSubtitle.substring(0, 48) + "...";
         verdictTag = `
           <div>
             <span class="font-mono text-[11px] text-zinc-400">○ Gated</span>
@@ -266,8 +267,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
         `;
       } else if (app.buildability_verdict.includes('Not Feasible') || app.buildability_verdict.includes('CLI Only')) {
-        let blockerSubtitle = app.main_blocker || "No Public API";
-        if (blockerSubtitle.length > 55) blockerSubtitle = blockerSubtitle.substring(0, 52) + "...";
+        let blockerSubtitle = app.main_blocker || "No Public APIs";
+        if (blockerSubtitle.length > 50) blockerSubtitle = blockerSubtitle.substring(0, 48) + "...";
         verdictTag = `
           <div>
             <span class="font-mono text-[11px] text-rose-500">✕ Blocked</span>
@@ -278,18 +279,33 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       return `
         <tr data-id="${app.id}" class="hover:bg-zinc-900/60 cursor-pointer transition-colors group">
-          <td class="py-2.5 px-3 font-mono text-[11px] text-zinc-600 group-hover:text-zinc-400">${String(app.id).padStart(3, '0')}</td>
-          <td class="py-2.5 px-3">
+          <!-- Col 1: # -->
+          <td class="py-2.5 px-3 font-mono text-[11px] text-zinc-600 group-hover:text-zinc-400 align-top">${String(app.id).padStart(3, '0')}</td>
+          
+          <!-- Col 2: App -->
+          <td class="py-2.5 px-3 align-top">
             <div class="font-medium text-white group-hover:text-brand-orange transition-colors">${app.name}</div>
-            <div class="text-[11px] text-zinc-500 truncate max-w-xs sm:max-w-md">${app.description}</div>
+            <div class="text-[11px] text-zinc-500 truncate max-w-xs sm:max-w-md mt-0.5">${app.description}</div>
           </td>
-          <td class="py-2.5 px-3 text-zinc-400 font-mono text-[11px]">${app.category}</td>
-          <td class="py-2.5 px-3"><div class="flex flex-wrap gap-1">${authBadges}</div></td>
-          <td class="py-2.5 px-3">${surfaceBadge}</td>
-          <td class="py-2.5 px-3">${accessBadge}</td>
-          <td class="py-2.5 px-3">${verdictTag}</td>
-          <td class="py-2.5 px-3 text-right">
-            <a href="${app.evidence_url}" target="_blank" rel="noopener noreferrer" class="font-mono text-zinc-500 hover:text-brand-orange p-1" onclick="event.stopPropagation();" title="View Source Docs">
+          
+          <!-- Col 3: Category -->
+          <td class="py-2.5 px-3 text-zinc-400 font-mono text-[11px] align-top whitespace-nowrap">${app.category}</td>
+          
+          <!-- Col 4: Auth -->
+          <td class="py-2.5 px-3 align-top"><div class="flex flex-wrap gap-1">${authBadges}</div></td>
+          
+          <!-- Col 5: Surface -->
+          <td class="py-2.5 px-3 align-top whitespace-nowrap">${surfaceBadge}</td>
+          
+          <!-- Col 6: Access -->
+          <td class="py-2.5 px-3 align-top whitespace-nowrap">${accessBadge}</td>
+          
+          <!-- Col 7: Verdict -->
+          <td class="py-2.5 px-3 align-top">${verdictTag}</td>
+          
+          <!-- Col 8: Docs -->
+          <td class="py-2.5 px-3 text-right align-top">
+            <a href="${app.evidence_url}" target="_blank" rel="noopener noreferrer" class="font-mono text-zinc-500 hover:text-brand-orange p-1 inline-block" onclick="event.stopPropagation();" title="View Source Docs">
               ↗
             </a>
           </td>
