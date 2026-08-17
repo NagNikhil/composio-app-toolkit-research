@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" class="dark bg-black">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Integration Research • Composio</title>
+  <meta name="description" content="Analysis of 100 target applications to determine Model Context Protocol (MCP) and toolkit buildability.">
+  
+  <!-- Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#FF5722',
+              'orange-hover': '#F4511E',
+              'orange-dim': 'rgba(255, 87, 34, 0.12)'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Minimalist Developer Scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #000000; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+    .drawer-open {
+      transform: translateX(0) !important;
+    }
+  </style>
+</head>
+<body class="bg-black text-zinc-300 font-sans antialiased min-h-screen selection:bg-brand-orange selection:text-white">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-black/80 backdrop-blur-md">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="#" class="flex items-center gap-1.5 font-medium text-white tracking-tight text-base hover:opacity-90 transition-opacity">
+          <span>Composio</span>
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-brand-orange"></span>
+        </a>
+        <span class="text-zinc-600 text-sm font-mono">/</span>
+        <span class="text-zinc-400 text-xs font-mono tracking-wide">RESEARCH_v2.4</span>
+      </div>
+
+      <nav class="flex items-center gap-6">
+        <a href="#overview" class="text-xs font-medium text-zinc-400 hover:text-white transition-colors">Overview</a>
+        <a href="#insights" class="text-xs font-medium text-zinc-400 hover:text-white transition-colors">Insights</a>
+        <a href="#verification" class="text-xs font-medium text-zinc-400 hover:text-white transition-colors">Verification</a>
+        <a href="#dataset" class="text-xs font-medium text-zinc-400 hover:text-white transition-colors">Raw Data</a>
+        <button id="btn-agent-sim" class="text-xs font-mono px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-brand-orange hover:text-white transition-colors flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>RUN_AGENT</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+    <!-- Hero Section -->
+    <section id="overview" class="space-y-6">
+      <div class="max-w-3xl space-y-2">
+        <h1 class="text-2xl sm:text-3xl font-medium tracking-tight text-white">API Integration Research</h1>
+        <p class="text-sm sm:text-base text-zinc-400 leading-relaxed">
+          Analysis of 100 target applications to determine Model Context Protocol (MCP) and toolkit buildability.
+        </p>
+      </div>
+
+      <!-- Metrics Row (4 Cards) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <!-- Card 1 -->
+        <div class="p-4 rounded-lg bg-zinc-950 border border-zinc-800/80 hover:border-zinc-700 transition-colors">
+          <div class="text-2xl sm:text-3xl font-mono font-semibold text-white tracking-tight">78</div>
+          <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400 mt-1">READY_FOR_TOOLKIT</div>
+          <div class="text-xs text-zinc-400 mt-1">78/100 immediate builds</div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="p-4 rounded-lg bg-zinc-950 border border-zinc-800/80 hover:border-zinc-700 transition-colors">
+          <div class="text-2xl sm:text-3xl font-mono font-semibold text-white tracking-tight">86%</div>
+          <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400 mt-1">SELF_SERVE_ACCESS</div>
+          <div class="text-xs text-zinc-400 mt-1">Free tiers, trials, sandboxes</div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="p-4 rounded-lg bg-zinc-950 border border-zinc-800/80 hover:border-zinc-700 transition-colors">
+          <div class="text-2xl sm:text-3xl font-mono font-semibold text-white tracking-tight">48%</div>
+          <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400 mt-1">OAUTH2_DOMINANCE</div>
+          <div class="text-xs text-zinc-400 mt-1">42% API Key, 6% Basic, 4% CLI</div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="p-4 rounded-lg bg-zinc-950 border border-zinc-800/80 hover:border-zinc-700 transition-colors">
+          <div class="text-2xl sm:text-3xl font-mono font-semibold text-brand-orange tracking-tight">99%</div>
+          <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400 mt-1">DATA_INTEGRITY</div>
+          <div class="text-xs text-zinc-400 mt-1">+23.0% verification lift</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Insights Section (Bento Grid) -->
+    <section id="insights" class="space-y-4">
+      <div class="flex items-center justify-between border-b border-zinc-800/80 pb-2">
+        <h2 class="text-sm font-mono uppercase tracking-wider text-zinc-400">RESEARCH_INSIGHTS</h2>
+        <span class="text-xs text-zinc-500 font-mono">10 VERTICALS • 100 APIS</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        
+        <!-- Card 1: Auth Distribution -->
+        <div class="lg:col-span-6 p-5 rounded-lg bg-zinc-950 border border-zinc-800/80 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-medium text-white">Auth Distribution</h3>
+            <span class="text-xs font-mono text-zinc-500">BY VERTICAL</span>
+          </div>
+
+          <div class="space-y-3" id="auth-bars-container">
+            <!-- Populated via js/app.js -->
+          </div>
+
+          <div class="pt-3 border-t border-zinc-800/60 flex items-center justify-between text-xs font-mono text-zinc-400">
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-orange-500"></span> OAuth2: 48</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-sky-500"></span> API Key: 42</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-amber-500"></span> Basic: 6</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-emerald-500"></span> CLI: 4</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Strategic Rollout -->
+        <div class="lg:col-span-6 p-5 rounded-lg bg-zinc-950 border border-zinc-800/80 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-medium text-white">Strategic Rollout</h3>
+            <span class="text-xs font-mono text-zinc-500">3 PHASES</span>
+          </div>
+
+          <div class="space-y-3.5 text-xs">
+            <div class="p-3 rounded bg-zinc-900/50 border border-zinc-800/60 space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-mono font-medium text-emerald-400">Sprint 1: Quick Wins (54 APIs)</span>
+                <span class="text-zinc-500 font-mono">P0 IMMEDIATE</span>
+              </div>
+              <p class="text-zinc-400 leading-relaxed">
+                Self-serve platforms with open REST/GraphQL and OpenAPI specs. Standard 1-click connectors.
+              </p>
+              <div class="text-zinc-500 font-mono text-[11px]">
+                Stripe, GitHub, Linear, Notion, Supabase, Firecrawl, Slack, HubSpot, Airtable, ClickUp
+              </div>
+            </div>
+
+            <div class="p-3 rounded bg-zinc-900/50 border border-zinc-800/60 space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-mono font-medium text-sky-400">Sprint 2: Fast Followers (24 APIs)</span>
+                <span class="text-zinc-500 font-mono">P1 SPEC_GEN</span>
+              </div>
+              <p class="text-zinc-400 leading-relaxed">
+                Developer-first APIs and local CLI tools wrapped as Subprocess Model Context Protocol servers.
+              </p>
+              <div class="text-zinc-500 font-mono text-[11px]">
+                Reducto, Plain, Twenty, Attio, Apify, Fathom, Grain, Sherlock, Mermaid CLI, MrScraper
+              </div>
+            </div>
+
+            <div class="p-3 rounded bg-zinc-900/50 border border-zinc-800/60 space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-mono font-medium text-amber-400">Sprint 3: Enterprise Gateways (14 APIs)</span>
+                <span class="text-zinc-500 font-mono">P2 BYO_CREDENTIALS</span>
+              </div>
+              <p class="text-zinc-400 leading-relaxed">
+                High-contract value platforms requiring customer-provided API credentials and partner token review.
+              </p>
+              <div class="text-zinc-500 font-mono text-[11px]">
+                Salesforce Commerce Cloud, PitchBook, DealCloud, Google Ads, Amazon SP-API, Gladly
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Verification Audit Section -->
+    <section id="verification" class="space-y-4">
+      <div class="flex items-center justify-between border-b border-zinc-800/80 pb-2">
+        <h2 class="text-sm font-mono uppercase tracking-wider text-zinc-400">VERIFICATION_AUDIT</h2>
+        <span class="text-xs font-mono text-zinc-500">ACCURACY: 76.0% → 99.0% (+23.0% LIFT)</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div class="p-4 rounded-lg bg-zinc-950 border border-zinc-800/80 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-zinc-400">PASS_1: RAW_AGENT</span>
+            <span class="text-sm font-mono text-zinc-400">76.0%</span>
+          </div>
+          <div class="w-full bg-zinc-900 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-zinc-500 h-full" style="width: 76%"></div>
+          </div>
+          <p class="text-xs text-zinc-500 leading-normal">
+            Autonomous web scrape. Misclassified public Swagger as free signup; missed secondary token gates.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-lg bg-zinc-950 border border-zinc-800/80 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-sky-400">PASS_2: VERIFICATION_LOOP</span>
+            <span class="text-sm font-mono text-sky-400">92.5% (+16.5%)</span>
+          </div>
+          <div class="w-full bg-zinc-900 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-sky-500 h-full" style="width: 92.5%"></div>
+          </div>
+          <p class="text-xs text-zinc-500 leading-normal">
+            Rule guardrails. Detected 401 routes, enterprise paywalls, local CLI executables, and HMAC SHA-256 signatures.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-lg bg-zinc-950 border border-zinc-800/80 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-brand-orange">PASS_3: HUMAN_QA_AUDIT</span>
+            <span class="text-sm font-mono text-brand-orange">99.0% (+23.0%)</span>
+          </div>
+          <div class="w-full bg-zinc-900 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-brand-orange h-full" style="width: 99%"></div>
+          </div>
+          <p class="text-xs text-zinc-500 leading-normal">
+            20-app stratified benchmark across all 10 verticals. Ground-truth verified against live developer portals.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Table Section -->
+    <section id="dataset" class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800/80 pb-3">
+        <div class="flex items-center gap-3">
+          <h2 class="text-sm font-mono uppercase tracking-wider text-white">DATASET</h2>
+          <span class="text-xs font-mono text-zinc-500">Showing <span id="table-count" class="text-white">100</span> of 100 APIs</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="btn-export-csv" class="text-xs font-mono px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors">
+            EXPORT_CSV
+          </button>
+          <button id="btn-export-json" class="text-xs font-mono px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors">
+            EXPORT_JSON
+          </button>
+        </div>
+      </div>
+
+      <!-- Controls: Category Pills & Search -->
+      <div class="space-y-3">
+        <!-- Category Filter Pills -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs font-mono" id="category-filter-pills">
+          <!-- Rendered via js/app.js -->
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="flex flex-col sm:flex-row items-center gap-2.5">
+          <div class="relative w-full sm:flex-1">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-zinc-500 font-mono text-xs">/</span>
+            <input 
+              type="text" 
+              id="search-input" 
+              placeholder="Search 100 APIs by name, category, auth, or keyword..." 
+              class="w-full pl-7 pr-4 py-1.5 bg-zinc-950 border border-zinc-800 rounded text-xs text-white placeholder-zinc-500 font-sans focus:outline-none focus:border-brand-orange transition-colors"
+            >
+          </div>
+
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <select id="filter-auth" class="bg-zinc-950 border border-zinc-800 text-zinc-300 text-xs rounded px-2.5 py-1.5 font-mono focus:outline-none focus:border-brand-orange">
+              <option value="all">AUTH: ALL</option>
+              <option value="OAuth2">OAuth2</option>
+              <option value="API Key">API Key</option>
+              <option value="Basic">Basic Auth</option>
+              <option value="CLI">Local CLI</option>
+            </select>
+
+            <select id="filter-access" class="bg-zinc-950 border border-zinc-800 text-zinc-300 text-xs rounded px-2.5 py-1.5 font-mono focus:outline-none focus:border-brand-orange">
+              <option value="all">ACCESS: ALL</option>
+              <option value="Self-Serve Free">Self-Serve Free</option>
+              <option value="Self-Serve Trial">Trial</option>
+              <option value="Enterprise / Contact Sales">Enterprise Gated</option>
+              <option value="Open Source / Local">Open Source / Local</option>
+              <option value="No Public API">No Public API</option>
+            </select>
+
+            <select id="filter-verdict" class="bg-zinc-950 border border-zinc-800 text-zinc-300 text-xs rounded px-2.5 py-1.5 font-mono focus:outline-none focus:border-brand-orange">
+              <option value="all">VERDICT: ALL</option>
+              <option value="Ready Now">Ready Now (78)</option>
+              <option value="Medium Friction">Medium (7)</option>
+              <option value="High Friction / Gated">Gated (14)</option>
+              <option value="Not Feasible / CLI Only">Not Feasible (1)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dense Table -->
+      <div class="overflow-x-auto rounded-lg border border-zinc-800/80 bg-zinc-950">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-zinc-900/60 border-b border-zinc-800/80 text-zinc-400 font-mono text-[11px] uppercase tracking-wider">
+            <tr>
+              <th class="py-2.5 px-3 w-12 text-zinc-500">#</th>
+              <th class="py-2.5 px-3 font-medium text-zinc-300 cursor-pointer hover:text-white" data-sort="name">App</th>
+              <th class="py-2.5 px-3 font-medium text-zinc-300 cursor-pointer hover:text-white" data-sort="category">Category</th>
+              <th class="py-2.5 px-3 font-medium text-zinc-300">Auth</th>
+              <th class="py-2.5 px-3 font-medium text-zinc-300 cursor-pointer hover:text-white" data-sort="access_tier">Access</th>
+              <th class="py-2.5 px-3 font-medium text-zinc-300 cursor-pointer hover:text-white" data-sort="buildability_verdict">Verdict</th>
+              <th class="py-2.5 px-3 font-medium text-zinc-300 text-right">Docs</th>
+            </tr>
+          </thead>
+          <tbody id="api-table-body" class="divide-y divide-zinc-800/50 font-sans">
+            <!-- Rendered via js/app.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Slide-Over Code Drawer / Detail Panel -->
+  <div id="drawer-overlay" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200">
+    <div id="drawer-panel" class="fixed inset-y-0 right-0 max-w-xl w-full bg-zinc-950 border-l border-zinc-800 transform translate-x-full transition-transform duration-200 ease-out flex flex-col shadow-2xl">
+      
+      <!-- Drawer Header -->
+      <div class="p-5 border-b border-zinc-800 flex items-start justify-between bg-zinc-900/30">
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 id="drawer-title" class="text-base font-semibold text-white tracking-tight">App Name</h3>
+            <span id="drawer-id-badge" class="font-mono text-xs text-zinc-500">#001</span>
+          </div>
+          <p id="drawer-category" class="text-xs text-zinc-400 font-mono mt-0.5">Category</p>
+        </div>
+        <button id="drawer-close" class="text-zinc-400 hover:text-white font-mono text-sm px-2 py-1 rounded bg-zinc-900 border border-zinc-800">
+          ESC
+        </button>
+      </div>
+
+      <!-- Drawer Content -->
+      <div class="flex-1 overflow-y-auto p-5 space-y-5 text-xs">
+        
+        <!-- Summary -->
+        <div class="space-y-1.5">
+          <div class="font-mono text-[11px] text-zinc-500 uppercase tracking-wider">DESCRIPTION</div>
+          <p id="drawer-desc" class="text-zinc-300 leading-relaxed"></p>
+        </div>
+
+        <!-- Auth & Access Metadata -->
+        <div class="grid grid-cols-2 gap-2.5">
+          <div class="p-2.5 rounded bg-zinc-900/40 border border-zinc-800/80 space-y-1">
+            <div class="font-mono text-[10px] text-zinc-500 uppercase">AUTH_METHODS</div>
+            <div id="drawer-auth-tags" class="flex flex-wrap gap-1"></div>
+          </div>
+          <div class="p-2.5 rounded bg-zinc-900/40 border border-zinc-800/80 space-y-1">
+            <div class="font-mono text-[10px] text-zinc-500 uppercase">ACCESS_TIER</div>
+            <div id="drawer-access-badge" class="font-mono text-xs text-zinc-200"></div>
+          </div>
+        </div>
+
+        <!-- API Surface & MCP -->
+        <div class="p-3 rounded bg-zinc-900/40 border border-zinc-800/80 space-y-1.5">
+          <div class="flex items-center justify-between">
+            <div class="font-mono text-[10px] text-zinc-500 uppercase">API_SURFACE & BREADTH</div>
+            <span id="drawer-mcp-badge" class="font-mono text-[11px] text-brand-orange"></span>
+          </div>
+          <p id="drawer-surface" class="text-zinc-300 font-sans"></p>
+        </div>
+
+        <!-- Blocker -->
+        <div class="p-3 rounded bg-zinc-900/40 border border-zinc-800/80 space-y-1">
+          <div class="font-mono text-[10px] text-zinc-500 uppercase">MAIN_BLOCKER</div>
+          <p id="drawer-blocker" class="text-zinc-300 font-sans leading-relaxed"></p>
+        </div>
+
+        <!-- Toolkit Strategy -->
+        <div class="p-3 rounded bg-zinc-900/40 border border-zinc-800/80 space-y-1">
+          <div class="font-mono text-[10px] text-brand-orange uppercase font-medium">COMPOSIO_ACTION_STRATEGY</div>
+          <p id="drawer-strategy" class="text-zinc-300 font-sans leading-relaxed"></p>
+        </div>
+
+        <!-- cURL Sample -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <div class="font-mono text-[10px] text-zinc-500 uppercase">SAMPLE_INVOCATION</div>
+            <button id="btn-copy-curl" class="font-mono text-[11px] text-zinc-400 hover:text-white px-1.5 py-0.5 rounded bg-zinc-900 border border-zinc-800">
+              COPY_CURL
+            </button>
+          </div>
+          <pre id="drawer-curl-code" class="p-3 rounded bg-black border border-zinc-800 font-mono text-[11px] text-zinc-300 overflow-x-auto leading-relaxed"></pre>
+        </div>
+
+        <!-- Canonical Docs Link -->
+        <div class="pt-2">
+          <a id="drawer-docs-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono text-brand-orange hover:underline">
+            <span>VIEW_DOCUMENTATION_SOURCE</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="p-4 border-t border-zinc-800 bg-zinc-900/30 flex items-center justify-between">
+        <button id="btn-copy-app-json" class="w-full font-mono text-xs py-2 px-3 rounded bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 transition-colors">
+          COPY_RAW_JSON_RECORD
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Agent Execution Terminal Modal -->
+  <div id="agent-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-150 flex items-center justify-center p-4">
+    <div class="max-w-2xl w-full bg-zinc-950 border border-zinc-800 rounded-lg overflow-hidden shadow-2xl font-mono text-xs">
+      <div class="p-3 bg-zinc-900/80 border-b border-zinc-800 flex items-center justify-between">
+        <div class="flex items-center gap-2 text-zinc-400">
+          <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+          <span>COMPOSIO_RESEARCH_PIPELINE.sh</span>
+        </div>
+        <button id="agent-modal-close" class="text-zinc-500 hover:text-white">✕</button>
+      </div>
+      <div id="terminal-logs" class="p-4 h-80 overflow-y-auto space-y-1.5 text-zinc-300 bg-black">
+        <!-- Live streamed via app.js -->
+      </div>
+      <div class="p-3 bg-zinc-900/50 border-t border-zinc-800 flex justify-between items-center text-[11px] text-zinc-500">
+        <span>STATUS: VERIFIED (100 APIS / 99% INTEGRITY)</span>
+        <button id="btn-re-run-agent" class="px-2 py-1 rounded bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white">RE_RUN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-800/80 mt-16 py-6 text-center text-xs font-mono text-zinc-400">
+    <div class="max-w-[1440px] mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div>COMPOSIO • MODEL_CONTEXT_PROTOCOL & TOOLKIT SPECIFICATION</div>
+      <div>100/100 APIS RESEARCHED & VERIFIED</div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
