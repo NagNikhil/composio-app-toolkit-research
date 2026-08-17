@@ -211,6 +211,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         return `<span class="font-mono text-[10px] px-1.5 py-0.5 rounded border ${borderCol}">${a}</span>`;
       }).join(' ');
 
+      // Surface Monospace Badge
+      let surfaceText = "REST";
+      const sLower = (app.api_surface || "").toLowerCase();
+      if (sLower.includes("graphql") && sLower.includes("rest")) {
+        surfaceText = "REST + GraphQL";
+      } else if (sLower.includes("graphql") && sLower.includes("webhook")) {
+        surfaceText = "GraphQL + Webhooks";
+      } else if (sLower.includes("rest") && sLower.includes("webhook")) {
+        surfaceText = "REST + Webhooks";
+      } else if (sLower.includes("graphql")) {
+        surfaceText = "GraphQL";
+      } else if (sLower.includes("cli") || sLower.includes("subprocess")) {
+        surfaceText = "CLI / Subprocess";
+      } else if (sLower.includes("no public") || sLower.includes("internal")) {
+        surfaceText = "No Public API";
+      } else if (sLower.includes("grpc")) {
+        surfaceText = "gRPC + REST";
+      } else if (sLower.includes("rest")) {
+        surfaceText = "REST";
+      }
+
+      const surfaceBadge = `<span class="font-mono text-[10px] px-1.5 py-0.5 rounded border border-zinc-800 bg-zinc-900/60 text-zinc-300">${surfaceText}</span>`;
+
       // Access Tier Badge
       let accessBadge = `<span class="font-mono text-[11px] text-zinc-400">${app.access_tier}</span>`;
       if (app.is_self_serve) {
@@ -221,14 +244,36 @@ document.addEventListener('DOMContentLoaded', async () => {
         accessBadge = `<span class="font-mono text-[11px] text-rose-500">✕ No API</span>`;
       }
 
-      // Buildability Verdict Tag
-      let verdictTag = `<span class="font-mono text-[11px] text-emerald-400">Ready</span>`;
+      // Buildability Verdict Tag with Main Blocker Subtitle
+      let verdictTag = `<span class="font-mono text-[11px] text-emerald-400">● Ready</span>`;
       if (app.buildability_verdict.includes('Medium')) {
-        verdictTag = `<span class="font-mono text-[11px] text-amber-400">Medium</span>`;
-      } else if (app.buildability_verdict.includes('High Friction')) {
-        verdictTag = `<span class="font-mono text-[11px] text-zinc-500">Gated</span>`;
-      } else if (app.buildability_verdict.includes('Not Feasible')) {
-        verdictTag = `<span class="font-mono text-[11px] text-rose-500">Blocked</span>`;
+        let blockerSubtitle = app.main_blocker || "Requires Partner Token";
+        if (blockerSubtitle.length > 55) blockerSubtitle = blockerSubtitle.substring(0, 52) + "...";
+        verdictTag = `
+          <div>
+            <span class="font-mono text-[11px] text-amber-400">▲ Medium</span>
+            <div class="text-[11px] text-zinc-500 mt-1 font-sans leading-tight max-w-[210px]">${blockerSubtitle}</div>
+          </div>
+        `;
+      } else if (app.buildability_verdict.includes('High Friction') || app.buildability_verdict.includes('Gated')) {
+        let blockerSubtitle = app.main_blocker || "Enterprise Contract Required";
+        if (blockerSubtitle.startsWith("None.")) blockerSubtitle = "Enterprise Sales Contract Required";
+        if (blockerSubtitle.length > 55) blockerSubtitle = blockerSubtitle.substring(0, 52) + "...";
+        verdictTag = `
+          <div>
+            <span class="font-mono text-[11px] text-zinc-400">○ Gated</span>
+            <div class="text-[11px] text-zinc-500 mt-1 font-sans leading-tight max-w-[210px]">${blockerSubtitle}</div>
+          </div>
+        `;
+      } else if (app.buildability_verdict.includes('Not Feasible') || app.buildability_verdict.includes('CLI Only')) {
+        let blockerSubtitle = app.main_blocker || "No Public API";
+        if (blockerSubtitle.length > 55) blockerSubtitle = blockerSubtitle.substring(0, 52) + "...";
+        verdictTag = `
+          <div>
+            <span class="font-mono text-[11px] text-rose-500">✕ Blocked</span>
+            <div class="text-[11px] text-zinc-500 mt-1 font-sans leading-tight max-w-[210px]">${blockerSubtitle}</div>
+          </div>
+        `;
       }
 
       return `
@@ -240,6 +285,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           </td>
           <td class="py-2.5 px-3 text-zinc-400 font-mono text-[11px]">${app.category}</td>
           <td class="py-2.5 px-3"><div class="flex flex-wrap gap-1">${authBadges}</div></td>
+          <td class="py-2.5 px-3">${surfaceBadge}</td>
           <td class="py-2.5 px-3">${accessBadge}</td>
           <td class="py-2.5 px-3">${verdictTag}</td>
           <td class="py-2.5 px-3 text-right">

@@ -245,6 +245,31 @@
       </div>
     </section>
 
+    <!-- Pipeline & Human QA Narrative Section -->
+    <section id="pipeline-qa" class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+        <!-- Column 1: The Agent -->
+        <div class="p-5 rounded-lg bg-zinc-950 border border-zinc-800/80 space-y-2">
+          <div class="font-mono text-xs font-medium text-white tracking-wide">
+            AUTONOMOUS_AGENT (COMPOSIO SDK)
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed font-sans">
+            Built in the spirit of the role using the composio-openai Python SDK. The pipeline equipped an OpenAI model with Composio web search tools, allowing the agent to actively route to live developer portals, read API reference structures, and extract current gating barriers rather than relying on static model memory.
+          </p>
+        </div>
+
+        <!-- Column 2: The Human -->
+        <div class="p-5 rounded-lg bg-zinc-950 border border-zinc-800/80 space-y-2">
+          <div class="font-mono text-xs font-medium text-white tracking-wide">
+            HUMAN_IN_THE_LOOP (HITL) QA
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed font-sans">
+            A 20-app stratified manual audit was performed. Human QA disambiguated Enterprise Sales Walls (e.g., DealCloud, Gladly) that appeared self-serve to the LLM due to public Swagger portals. This intervention corrected 4 false positives, lifting final verified accuracy to 99.0%.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- Data Table Section -->
     <section id="dataset" class="space-y-4">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800/80 pb-3">
@@ -320,6 +345,7 @@
               <th class="py-2.5 px-3 font-medium text-zinc-300 cursor-pointer hover:text-white" data-sort="name">App</th>
               <th class="py-2.5 px-3 font-medium text-zinc-300 cursor-pointer hover:text-white" data-sort="category">Category</th>
               <th class="py-2.5 px-3 font-medium text-zinc-300">Auth</th>
+              <th class="py-2.5 px-3 font-medium text-zinc-300">Surface</th>
               <th class="py-2.5 px-3 font-medium text-zinc-300 cursor-pointer hover:text-white" data-sort="access_tier">Access</th>
               <th class="py-2.5 px-3 font-medium text-zinc-300 cursor-pointer hover:text-white" data-sort="buildability_verdict">Verdict</th>
               <th class="py-2.5 px-3 font-medium text-zinc-300 text-right">Docs</th>
